@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # namespace で名前空間を表す
   # 今回の場合コントローラーは app/controllers/api/vi/### に作成
   namespace :api do
-    namespace :vi do
+    namespace :v1 do
       resources :restaurants do
         resources :foods, only: %i[index]
       end
