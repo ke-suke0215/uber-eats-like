@@ -5,6 +5,7 @@ class LineFood < ApplicationRecord
 
   validates :count, numericality: { greater_than: 0 }
 
+  #controller/line_foods_controller.rb で使用
   scope :active, -> { where(active: true) }
   scope :other_restaurant, -> (picked_restaurant_id) { where.not(restaurant_id: picked_restaurant_id) }
 
