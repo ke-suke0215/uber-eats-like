@@ -56,6 +56,10 @@ const ItemWrapper = styled.div`
   margin: 16px;
 `;
 
+const submitOrder = (price) => {
+  console.log(`${price}円購入`)
+}
+
 export const Foods = ({ match }) => {
   const [foodsState, dispatch] = useReducer(foodsReducer, foodsInitialState);
 
@@ -129,10 +133,28 @@ export const Foods = ({ match }) => {
         <FoodOrderDialog
           food={state.selectedFood}
           isOpen={state.isOpenOrderDialog}
+          countNumber={state.selectedFoodCount}
+          onClickCountUp={() =>
+            setState({
+              ...state,
+              selectedFoodCount: state.selectedFoodCount + 1
+            })
+          }
+          onClickCountDown={() =>
+            setState({
+              ...state,
+              selectedFoodCount: state.selectedFoodCount - 1
+            })
+          }
+          onClickOrder={(price) => submitOrder(price)}
+
+          // モーダルを閉じる時はすべてのstateを初期化する
           onClose={() =>
             setState({
               ...state,
-              isOpenOrderDialog: false
+              isOpenOrderDialog: false,
+              selectedFood: null,
+              selectedFoodCount: 1,
             })
           }
         />
